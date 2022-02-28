@@ -10,6 +10,9 @@
     - [MinMax Search](#minmax-search)
     - [Alfa-Beta Pruning](#alfa-beta-pruning)
 - [Cellular Automata](#cellular-automata)
+    - [Varianti](#varianti)
+    - [Classi di Stepehn Wolfram](#classi-di-stepehn-wolfram)
+    - [CA probabilistici](#ca-probabilistici)
 - [Swarm Intelligence](#swarm-intelligence)
 - [Reinforcement Learning](#reinforcement-learning)
     - [Agent and Envirnonment](#agent-and-envirnonment)
@@ -20,6 +23,7 @@
     - [Concetti base](#concetti-base)
         - [Key players](#key-players)
         - [Cohesion](#cohesion)
+    - [Communicability](#communicability)    
 - [Reti e grafi](#reti-e-grafi)
     - [Formazione dei grafi](#formazione-dei-grafi)
     - [Erdos-Renyi Random Graphs](#erdos-renyi-random-graphs)
@@ -41,7 +45,7 @@ Un agente è qualsiasi cosa che può percepire l'ambiente circostante tramite se
 ![Agente](./imgs/agente.png)
 
 Le azioni dell'agente sono influenzate dal tipo di ambiente in cui si trova.
-Un agente razionale è un agente che fa la cosa giusta (per ogni possibile sequenza di azioni, dovrebbe scegliere un'azione che massimizza il valore atteso dalla sua misura di prestazione). Si dice anche **autonomo** se il suo comportamento è determinato dalla sua esperienza e non dipende esclusivamente dalla sua conoscenza di base (built-in knowledge).L'agente **percepisce** lo stato e **modifica** (agendo) l'ambiente.
+Un agente razionale è un agente che fa la cosa giusta (per ogni possibile sequenza di azioni, dovrebbe scegliere un'azione che massimizza il valore atteso dalla sua misura di prestazione). Si dice anche **autonomo** se il suo comportamento è determinato dalla sua esperienza e non dipende esclusivamente dalla sua conoscenza di base (built-in knowledge). L'agente **percepisce** lo stato e **modifica** (agendo) l'ambiente.
 
 **Funzione Agente**: Descrizione matematica astratta, il cui **programma agente** ne è un'implementazione concreta, in esecuzione all'interno di un sistema fisico.
 
@@ -83,15 +87,19 @@ Gli ambienti vengono classificati in base ai seguenti criteri:
 
 **Agente** = Arhitettura + programma
 
-### Tipi di agente:
+### **Tipi di agente**:
 
-* Agenti reattivi semplici: Questi agenti scelgono le azioni sulla base della percezione corrente, ignorando tutte la storia precedente ![simple_ref](./imgs/simple_reflex_agent.png)
+* **Agenti reattivi semplici**: Questi agenti scelgono le azioni sulla base della percezione corrente, ignorando tutte la storia precedente. <br> 
+![simple_ref](./imgs/simple_reflex_agent.png)
 
-* Agenti reattivi basati sul modello: Tengono conto della parte del mondo che non possono vedere nell'istante corrente. ![statemodel](./imgs/reflex_statemodel.png)
+* **Agenti reattivi basati sul modello**: Tengono conto della parte del mondo che non possono vedere nell'istante corrente. <br> 
+![statemodel](./imgs/reflex_statemodel.png)
 
-* Agenti basati su obiettivi (goal): L'agente ha bisogno di qualche tipo di informazione riguardante il suo obiettivo. ![goal](./imgs/goal_agent.png)
+* **Agenti basati su obiettivi (goal)**: L'agente ha bisogno di qualche tipo di informazione riguardante il suo obiettivo. <br> 
+![goal](./imgs/goal_agent.png)
 
-* Agenti basati sull'utilità: Gli obiettivi da soli non bastano a generare un comportamento di alta qualità. Questi agenti tengono in considerazione quanto un'azione è utile al fine del loro obiettivo, prediligendo quelli che li avvicinano di più ad esso (sono più utili, hanno quindi un criterio di scelta). ![happy](./imgs/happy.png)
+* **Agenti basati sull'utilità**: Gli obiettivi da soli non bastano a generare un comportamento di alta qualità. Questi agenti tengono in considerazione quanto un'azione è utile al fine del loro obiettivo, prediligendo quelli che li avvicinano di più ad esso (sono più utili, hanno quindi un criterio di scelta). <br> 
+![happy](./imgs/happy.png)
 
 <hr> 
 
@@ -108,7 +116,7 @@ Dato un problema sconosciuto l'agente può operare in 2 modi:
     3. Search
     4. Execution
 
-### Definizioni di Algoritmi di Ricerca
+### **Definizioni per Algoritmi di Ricerca**
 
 * **Problema**: l'insieme degli stati possibili nei quali l'ambiente può esistere, viene anche chiamato **Spazio degli Stati**
 
@@ -132,7 +140,7 @@ Dato un problema sconosciuto l'agente può operare in 2 modi:
 
 * **Soluzione**: il cammino che va dallo stato iniziale ad uno stato goal/finale.<br>Una soluzione si dice **ottima** se corrisponde al percorso di costo minore tra tutte le soluzioni.
 
-### Rappresentazione di un problema di ricerca
+### **Rappresentazione di un problema di ricerca**
 
 Un problema di ricerca può essere rappresentato in 2 modi:
 
@@ -142,7 +150,7 @@ Un problema di ricerca può essere rappresentato in 2 modi:
 
 Le principali differenze tra i 2 sono che:
 
-|State Space Graph|Albero di Ricerca|
+|**State Space Graph**|**Albero di Ricerca**|
 |-----------------|-----------------|
 |Ad ogni nodo corrisponde uno stato e ogni arco corrisponde ad un'azione che può esser eseguita in quello stato.|Ci possono essere più nodi uguali, però dato un nodo, il cammino che lo riporta alla radice è unico.|
 |_Ti fa vedere tutto il problema_| _Qui vedi più chiaramente il cammino_.|
@@ -156,7 +164,7 @@ La differenza tra **stato** e **nodo** è la seguente:
 
 * un **nodo** è una struttura dati che contiene informazioni come: stato, nodo padre, azioni, costo del cammino, profondità, ecc.
 
-Questa mappa verrà presa in considerazione per i successivi esempi:
+Questa mappa verrà presa in considerazione per i successivi esempi: <br>
 ![Romania ia ia oh](./imgs/romania.png)
 
 
@@ -174,7 +182,7 @@ _E.g._ una linea di assemblaggio.
 Alcune implementazini risalgono tutta la catena, impiegano molto tempo ma tolgono tutti i cicli, altre solo una piccola parte (3 o 4 salti all'indietro), impiegano un tempo costante ma riescono a togliere solo piccoli cicli.
 
 
-### Graph Search vs Tree-like Search
+### **Graph Search vs Tree-like Search**
 
 Possiamo fare una distinzione degli algoritmi in base alla necessità di controllare la presenza di cammini ridondanti:
 
@@ -197,8 +205,7 @@ I parametri che si utilizzano per valutare le prestazioni di un algoritmo sono:
 * **Complessità in spazio**: la memoria utilizzata pe l'esecuzione dell'algoritmo.
 
 
-### **Spazio degli stati infinito**
-
+#### **Spazio degli stati infinito**
 Quando lo spazio degli stati è finito non ci sono grandi problemi per la ricerca di una soluzione. Qunando invece si tratta di uno spazio degli stati infinito, la ricerca deve essere fatta **sistematicamente** per evitare di applicare sempre la stessa azione e non tornare mai indietro per controllare stati vicini allo stato iniziale.
 
 
@@ -225,18 +232,17 @@ In questi casi la complessità può essere misurata in funzione di 3 fattori:
 # **Ricerca non Informata**
 
 A questa famiglia di ricerca appartengono:
-
 * **Best First Search**
 * **Breadth First Search**
 * **Uniform cost search**
 * **Depth First Search**
 * **Depth Limited Search**
-* **Iterative Deeeeeeepening Search**
+* **Iterative Deepening Search**
 
 ## **Best First Search**
 
 Uno degli algoritmi di ricerca più semplici è il **Best First Search**, esso basa la scelta del nodo su una funzione di valutazione, scelta arbitrariamente, chiamata `f(n)`.<br>
-La frontiera viene mantenuta in una **coda di priorità**, ordinata secondo una funzione di valutazione `f(n)`, da cui ad ogni iterazione verrà estratto il nodo di costo minimo e:
+La frontiera viene mantenuta in una **coda di priorità**, ordinata secondo una funzione di valutazione `f(n)`, da cui ad ogni iterazione verrà estratto il nodo di costo minimo, e:
 
 * se è lo stato Goal ritorna il corrispondente cammino
 * altrimenti applica la funzione `EXPAND()` per generare altri nodi figli e li aggiunge alla frontiera se non sono mai stati raggiunti o sono riaggiunti se ora possono essere raggiunti con un cammino di costo inferiore a quello precedente.<br>
@@ -312,7 +318,7 @@ Quando le azioni hanno tutte quante lo stesso costo può essere una buona idea u
 
 Nell'implementazione è possibile migliorarlo alterando alcuni aspetti della Best First Search:
 
-* La coda **frontier** può essere impelemntata come una coda FIFO dato che darà una coda che rispetta già l'ordine di visita per la Bereadth First Search (i più vecchi vengono visitati prima)
+* La coda **frontier** può essere impelemntata come una coda FIFO dato che darà una coda che rispetta già l'ordine di visita per la Breadth First Search (i più vecchi vengono visitati prima)
 * La tabella **reached** può essere impostata con gli stati piuttosto che con una mappatura stati-nodi
 * È possibile effettuare un **early goal test** poichè, una volta trovato un cammino, saremo sicuri che non ci saranno altri cammini migliori per raggiungere quel nodo
 
@@ -376,7 +382,7 @@ Il costo di questo algoritmo in **spazio** e **tempo** è ![Costo Uniform Cost S
   
 Questo algoritmo può essere utilizzato come la breadth first search se il costo di tutte le eazioni è equivalente ed il suo costo in tempo e spazio è di ![costo](./imgs/o_b_d1.gif)
 
-La Uniform Cost Search è un algortimo **Completo** e **Ottimale** perchè la prima soluzione che trova sarà sempre il cammino di costo minore perchè basato su un algoritmo greede (best first search).
+La Uniform Cost Search è un algortimo **Completo** e **Ottimale** perchè la prima soluzione che trova sarà sempre il cammino di costo minore perchè basato su un algoritmo greedy (best first search).
 
 ```javascript
 function uniformCostSearch(problem) {
@@ -388,9 +394,9 @@ function uniformCostSearch(problem) {
 ## **Depth First Search**
 
 La DFS espande sempre il nodo più in profondità nella frontiera.<br>
-Utilizza quindi una cosa LIFO per ordinare la coda che contine i nodi di frontiera.
+Utilizza quindi una coda LIFO per ordinare i nodi di frontiera.
 
-_Esempio di funzionamente della DFS:_
+_Esempio di funzionamente della DFS_: <br>
 ![dfs_example](./imgs/dfs_example.png)
 
 Per uno spazio degli stati ad albero è **Efficiente** e **Completa**.<br>
@@ -398,8 +404,7 @@ Per uno spazio degli stati **aciclico** può risultare che espande più volte lo
 In un insieme degli stati **con cicli** può rimanere bloccata in un ciclo infinito e perciò alcune implementazioni controllano la presenza di cicli.<br>
 Con uno spazio degli stati infinito la DFS non è sistematica perchè può bloccarsi in un percorso di lunghezza infinita.
 
-Il costo per uno spazio degli stati and albero è: ![costo dfs](./imgs/o_b_m.gif) con:
-
+Il costo per uno spazio degli stati ad albero è: ![costo dfs](./imgs/o_b_m.gif) con:
 * `b`: il branching factor
 * `m`: profondità massima
 
@@ -474,22 +479,22 @@ function iterativeDeepningSearch(problem) {
 }
 ```
 
-_Esempio di funzionamento della IDS_
+_Esempio di funzionamento della IDS_ <br>
 ![IDS example](./imgs/ids_example.png)
 
 ## **Bidirectional Search**
 
-E' un algoritmo di ricerca che espande parallelamente nodi partendo sia dallo Start che dal Goal fin quando non si incontrano in un punto "centrale". Può essere implementato utilizzando vari algoritmi di ricerca, quello che fornisce prestazioni migliore è la BFS.
-E' utilizzabile quando lo stato iniziale e quello finale sono definiti ed unici ed `b` deve essere uguale per tutti e due i lati della ricerca.
+E' un algoritmo di ricerca che espande parallelamente nodi partendo sia dallo Start che dal Goal fin quando non si incontrano in un punto "centrale". Può essere implementato utilizzando vari algoritmi di ricerca, quello che fornisce prestazioni migliori è la BFS. <br>
+È utilizzabile quando lo stato iniziale e quello finale sono definiti ed unici ed `b` deve essere uguale per tutti e due i lati della ricerca.
 
-Ha una complessità in tempo e spazio di `O(b ^(d/2))`
+Ha una complessità in tempo e spazio di `O(b ^(d/2))` <br>
 Con la BFS è **Ottimo** e **Completo**.
 
 ![vago](./imgs/centrale_vago.png)
 
 #### Comparazione tra algoritmi di ricerca non informati
 
-|Criterio|Bredth First|Uniform Cost|Depth First|Depth Limited|Iterative Deepnening|Bidirectional|
+|**Criterio**|**Bredth First**|**Uniform Cost**|**Depth First**|**Depth Limited**|**Iterative Deepnening**|**Bidirectional**|
 |:------:|:----------:|:----------:|:---------:|:-----------:|:------------------:|:-----------------:|
 |**Completo?**|SI|SI|NO|NO|SI|SI|
 |**Ottimale?**|SI|SI|NO|NO|SI|SI|
@@ -505,7 +510,7 @@ La funzione `h(n)` corrisponde alla **stima in costo** del cammino meno costoso 
 
 ## **Greedy Best First Search**
 
-E' la versione informata dell Best First Search che, piuttosto di basare la sua scelta su una funzione di valutazione `f(n)`, si basa su una funzione euristica `h(n)` (la coda di priorità è ordinata in base alla funzione euristica `f(n) = h(n`). Questa euristica fornisce informazioni su quale nodo ci permette di avvicinarci sempre di più al goal, senza però prendere in considerazione la distanza richiesta per percorrere il cammino.
+È la versione informata dell Best First Search che, piuttosto di basare la sua scelta su una funzione di valutazione `f(n)`, si basa su una funzione euristica `h(n)` (la coda di priorità è ordinata in base alla funzione euristica `f(n) = h(n`). Questa euristica fornisce informazioni su quale nodo ci permette di avvicinarci sempre di più al goal, senza però prendere in considerazione la distanza richiesta per percorrere il cammino.
 
 Il costo di questo algoritmo sia in spazio che in tempo è: `O(b^m)` (con m che rappresenta la profondità massima dello spazio di ricerca).
 Non è ottimo e non è completo (a meno che non si tiene traccia di tutti gli stati visitati).
@@ -527,7 +532,7 @@ Il risultato di questa somma corrisponde al cammino di costo minimo che permette
 A* è un algoritmo completo ma la sua ottimalità in costo dipende da alcune proprietà dell'euristica:
 
 * **Ammissibilità**: capacità dell'euristica di non sovrastimare mai il costo per raggiungere il goal (l'euristica è _ottimistica_).
-* **Consistentza** : la capacità dell'euristica di mantenere sensate le sue previsioni, ovvero l'euristica per raggiungere un nodo, deve essere minore o uguale alla somma tra un nuovo cammino figlio del nodo di partenza e l'euristica del nuovo nodo. Viene chiamata regola della **disuguaglianza triangolare**.
+* **Consistentza** : la capacità dell'euristica di mantenere sensate le sue previsioni, ovvero l'euristica per raggiungere un nodo, deve essere minore o uguale alla somma tra un nuovo cammino figlio del nodo di partenza e l'euristica del nuovo nodo. Viene chiamata regola della **disuguaglianza triangolare**. <br>
 ![inequita](./imgs/inequita.png)
 
 Un eurisitica consistente è sempre ammissibile, ma non è detto il contrario.<br>
@@ -535,7 +540,7 @@ L'euristiche possono peggiorare la performance della ricerca costringendo l'algo
 
 Con un abuona euristica, non avremo necessità di ricontrollare e aggiornare la tabella `reached`.
 
-_Esempio di funzionamento di A*_
+_Esempio di funzionamento di A*_ <br>
 ![esempio di A*](./imgs/esempio_astar.png)
 
 Quindi con una euristica Consistente A* è:
@@ -635,7 +640,7 @@ function rbfs(problem, node, f_limit) {
 }
 ```
 
-_Esempio di funzionamento della RBFS_
+_Esempio di funzionamento della RBFS <br>
 ![RBFS Esempio](./imgs/rbfs_example.png)
 
 Questo algoritmo è un po' più efficente di IDA* ma soffrre dell'utilizzo di troppa poca memoria portandolo a riiterare degli stessi cammini più volte prima di torvare una soluzione.
@@ -649,7 +654,7 @@ Sembra ragionevole poter far sfruttare ai nosti algoritmi tutta la memoria a lor
 * Memory Bounded A* (MA*)
 * Simplified Memory Bounded A* (SMA*): il suo funzionamento è molto semplice, l'algoritmo procede come un normalissimo A* fin quando non finisce la memoria per poi eliminare il nodo con la `f-value` più grande e ne salva quest ultima sul suo nodo predecessore cosicche si possa ricordare la miglior f-value, trovata fin ora, nel sottoalbero generato da quel nodo.
 
-L'SMA* può avere problemi di tempistiche, perchè quando finisce la memoria, eliminando i nodi con costo maggiore potrebbe andare a riespanderli e quindi passare più volte sugli stessi nodi. Questo può accadere in problemi molto difficili, il che significa che dei problemi risolvibili con un A*, dalla memoria infitia, non sono risolvibili dalla SMA* ma ovviamente non si può avere una memoria infinita e quindi per poter trovare una soluzione dobbiamo accontentarci non del miglior cammino ma di uno che sia "abbastanza buono".
+L'SMA* può avere problemi di tempistiche, perchè quando finisce la memoria, eliminando i nodi con costo maggiore potrebbe andare a riespanderli e quindi passare più volte sugli stessi nodi. Questo può accadere in problemi molto difficili, il che significa che dei problemi risolvibili con un A*, dalla memoria infinita, non sono risolvibili dalla SMA* ma ovviamente non si può avere una memoria infinita e quindi per poter trovare una soluzione dobbiamo accontentarci non del miglior cammino ma di uno che sia "abbastanza buono".
 
 
 ### **Funzioni Euristiche**
@@ -659,15 +664,15 @@ Il problema dell'8 puzzle possiamo fare a meno delle euristiche dato che può es
 * `h1`: il numero di tasselli in posizioni sbagliate (escluso quello vuoto)
 * `h2`: la somma della distanza dei tasselli dalla loro posizione finale, viene anche chiamata **city block distance** o **Mhanattan distance**
 
-Un fattore che viene spesso perso in cosiderazione per misurare la qualità di una euristica è il **branchin factor effettivo**: è il branching factor che viene calcolato su un albero di profondità `d` formato da `N+1` nodi che sono quelli esplorati da un algoritmo di ricerca (più è vicino ad 1 e migliore sarà l'euristica).
+Un fattore che viene spesso preso in cosiderazione per misurare la qualità di una euristica è il **branchin factor effettivo**: è il branching factor che viene calcolato su un albero di profondità `d` formato da `N+1` nodi che sono quelli esplorati da un algoritmo di ricerca (più è vicino ad 1 e migliore sarà l'euristica).
 
-Nella seguente tabella vediamo i differenti branching factor effettivi relativi all'euristica `h1`, `h2` e nessuna euristica. Evice che generalmente `h2` è la migliore scelta.
+Nella seguente tabella vediamo i differenti branching factor effettivi relativi all'euristica `h1`, `h2` e nessuna euristica. Evice che generalmente `h2` è la migliore scelta. <br>
 ![H1 vs H2](./imgs/h1h2.png)
 
 Possiamo dire che `h2` domina `h1`, ovvero che `h2(n) >= h1(n)`. La dominazione si può tradurre direttamente in efficenza, in quanto implica che `h2` non espanderà mai più nodi di `h1` per un dato algoritmo di ricerca.
 
 
-### **Problemi rilassati per individuazione di Euristiche**
+#### **Problemi rilassati per individuazione di Euristiche**
 
 Un problema rilassato è caratterizzato da minori condizioni vincolanti rispetto a un problema di riferimento.
 
@@ -681,7 +686,7 @@ Essendo l'albero di ricerca del problema di riferimento, quello con maggiori con
 
 # **Adversarial Search & Games**
 
-Degli ambienti competitivi nei quali ci sono 2 o più agenti, con obbiettivi contrastanti, fanno nascere il problema dell'**Adversarial search** (detti anche problemi di ricerca nei giochi). I giochi richiedono l'abilità di prendere una qualche decisione quando il calcolo di quella ottima non è realizzabile. <br>
+Degli ambienti competitivi nei quali ci sono 2 o più agenti, con obiettivi contrastanti, fanno nascere il problema dell'**Adversarial search** (detti anche problemi di ricerca nei giochi). I giochi richiedono l'abilità di prendere una qualche decisione quando il calcolo di quella ottima non è realizzabile. <br>
 Ci sono 3 possibili approcci per gestire gli ambienti multiagenti:
 
 1. si applica quando c'è un gran numero di agenti e consiste nel trattarli come un aggregato, quindi non si andrà a predire le azioni degli agenti individuali, ma quelle del proprio gruppo.
@@ -690,12 +695,12 @@ Ci sono 3 possibili approcci per gestire gli ambienti multiagenti:
 
 3. modellarlo in maniera esplicita con le tecniche dell'**adversarial tree search** (verrà approfondito in seguito)
 
-**Search vs Adversarial Gaymes:**
+**Search vs Adversarial Games:**
 
 | Search | Adversarial |
 | ---    | ----        |
-|La soluzione è un metodo per raggiungere lo stato goal| La soluzione è una strategia basata sulle mosse dell'avverzario per vincere la partia|
-| Le euristiche permettono di trovare soluzioni Ottimali | Limiti di tempo potrano a soluzioni approssimate |
+|La soluzione è un metodo per raggiungere lo stato goal| La soluzione è una strategia basata sulle mosse dell'avversario per vincere la partita|
+| Le euristiche permettono di trovare soluzioni Ottimali | Limiti di tempo portano a soluzioni approssimate |
 | La Evaluation function stima il costo di ogni passo dal nodo Start al nodo Goal | La Evaluation function valuta la "bontà" di ogni mossa |
 | Esempi: path planning, scheduling activities, path finding, ecc. | Esempi: scacchi, backgammon |
 
@@ -716,9 +721,9 @@ Un gioco di questo tipo può essere definito dai seguenti elementi:
 * `S0`: stato iniziale del gioco
 * `To-Move(s)`: il giocatore che deve muoversi allo stato `s` (a chi sta il turno)
 * `Actions(s)`: un set di mosse eseguibili dal giocatore nello stato s
-* `Result(s, a)`: definisce il rislutatio di un azione `a` effettuata nello stato `s`
+* `Result(s, a)`: definisce il risultato di un'azione `a` effettuata nello stato `s`
 * `Is-Terminal(s)`: controlla se lo stato `s` è uno **stato terminale**
-* `Utility(s, p)`: assegna un punteggio predetermintato `p` al vincitore del gioco (in scacchi la vittoria vale 1, perdita 0 e pareggio 1/2)
+* `Utility(s, p)`: assegna un punteggio predeterminato `p` al vincitore del gioco (in scacchi la vittoria vale 1, perdita 0 e pareggio 1/2)
 
 Le **Azioni**, lo **Stato Iniziale** e la funzione `Result` definiscono lo **State Space Graph**. Possiamo applicare un **albero di ricerca** da un determinato nodo per capire quale mossa fare.
 
@@ -726,7 +731,7 @@ Definiamo il **Game Tree** come un albero di ricerca che segue ogni sequenza di 
 
 ## **MinMax Search**
 
-L'idea fondante di questo algoritmo è che andrà a scegliere la sua mossa migliore per ogni giocatore, puntando a massimizzare il proprio obbiettivo e cercare di minimazzre il punteggio dell'altro.
+L'idea fondante di questo algoritmo è che andrà a scegliere la mossa migliore per ogni giocatore, puntando a massimizzare il proprio obbiettivo e cercare di minimazzre il punteggio dell'altro.
 
 La funzione su cui si basa questo algoritmo è `MinMax`. Questa funzione ritorna un valore numerico che viene scelto in base a chi effettua l'azione: 
 
@@ -782,13 +787,13 @@ Proprietà dell'algoritmo:
 * è **Completo** per alberi finiti
 * è **Ottimo** contro avversari ottimi (vince comunque contro avversari non-ottimi)
 * Ha una complessità in tempo di ![o b m](./imgs/o_bm.gif)
-* Ha una complessità in spazio di ![bm](./imgs/o_b_m.gif) se vengono generate tutte le azioni, se ne viene generata una per volta è ![o m](./imgs/o_m.gif) <br>
+* Ha una complessità in spazio di ![bm](./imgs/o_b_m.gif) se vengono generate tutte le azioni, se ne viene generata una per volta è ![o m](./imgs/o_m.gif). <br>
 Questo algoritmo fornisce la base per un'analisi matematica dei giochi e per sviluppare algoritmi più pratici.
 
 
 ## **Alfa-Beta Pruning**
 
-Il problema della ricerca minmax è il numero degli stati da esaminare che cresce esponenzialmentr con la profondità dell'albero. È però possibile calcolare la decisione minmax corretta senza guardare tutti i nodi dell'albero di gioco. Sorge da qui l'idea della **potatura** per evitare di prendere in considerazioni grandi porzioni dell'albero. <br>
+Il problema della ricerca minmax è il numero degli stati da esaminare che cresce esponenzialmente con la profondità dell'albero. È però possibile calcolare la decisione minmax corretta senza guardare tutti i nodi dell'albero di gioco. Sorge da qui l'idea della **potatura** per evitare di prendere in considerazioni grandi porzioni dell'albero. <br>
 La **potatura alfa-beta** restituisce quindi lo stesso risultato della tecnica minmax pura, ma "pota" i rami che non possono influenzare la decisione finale. <br>
 **Principio generale**: Considerate un nodo `n` da qualche parte nell'albero tale che il `giocatore` abbia la facoltà di muoversi in quel nodo. Se c'è una scelta migliore `m` a livello del nodo padre o di un qualunque nodo precedente, allora `n` non sarà mai raggiunto in tutta la partita. Possiamo quindi `potare n` non appena abbiamo raccolto abbastanza informazioni da raggiungere tale conclusione.
 
@@ -802,9 +807,9 @@ La potatura prende il nome dai seguenti parametri che vengono "portati su":
 La ricerca alfa-beta aggiorna i valori di alfa e beta a mano a mano che procede e pota i rami restanti che escono da un nodo non appena determina che il valore del nodo è peggio di quella di alfa per max o rispettivamente di beta per min.
 
 ### **Ordinamento delle mosse**
-L'efficacia della potatura alfa-beta dipende fortemente dall'ordine in cui sono esaminati gli stati. È quindi una buona idea esaminare per primi i successoi più promettenti. In questo caso per scegliere la mossa migliore, la ricerca alfa-beta deve esaminare solo O(b<sup>m/2</sup>) nodi, invece di O(b<sup>m</sup>) richiesti da minmax. Aggiungere schemi dinamici di ordinamento delle mosse ci porta molto vicino al limite teorico. Le mosse migliori sono chiamate `Mosse Killer`.
+L'efficacia della potatura alfa-beta dipende fortemente dall'ordine in cui sono esaminati gli stati. È quindi una buona idea esaminare per primi i successori più promettenti. In questo caso per scegliere la mossa migliore, la ricerca alfa-beta deve esaminare solo O(b<sup>m/2</sup>) nodi, invece di O(b<sup>m</sup>) richiesti da minmax. Aggiungere schemi dinamici di ordinamento delle mosse ci porta molto vicino al limite teorico. Le mosse migliori sono chiamate `Mosse Killer`.
 
-C'è un euristica chiamata _Killer Move_ che sono le migliori mosse conosciute di quel problema a seconda di determinati stati.
+C'è un euristica chiamata ***Killer Move***, nella quale sono conosciute le migliori mosse di quel problema a seconda di determinati stati.
 
 Il costo in tempo nel caso migliore (le mosse vengono ordiante dal costo più piccolo al costo più grande) è: ![obm2](./imgs/o_bn2.gif).<br>
 Il costo in tempo nel caso peggiore è: ![obm](./imgs/o_bm.gif) come quello del MiniMax.
@@ -819,42 +824,40 @@ _Esempio di pseudocodice dell'algoritmo_
 
 Siccome le mosse devono essere calcolate in un tempo ragionevole (ad esempio massimo qualche minuto) è stato proposto di tagliare la ricerca prima di raggiungere le foglie, applicando una `funzione di valutazione euristica` **eval** agli stati (trasformando i nodi terminali in foglie). <br>
 Modifiche da apportare a minmax o alfa-beta:
-1. sostituire la funzione di utilità con una funzione di valutazione euristica che fornisca una sima dell'utilità dalla posizione raggiunta
+1. sostituire la funzione di utilità con una funzione di valutazione euristica che fornisca una stima dell'utilità dalla posizione raggiunta
 2. rimpiazzre il test di terminazione con un test di taglio (`cutoff test`), il quale decide quando applicare `eval`.
 
 La funzione di valutazione restituisce una stima del guadagno atteso in una determinata posizione (proprio come le funzioni euristiche che forniscono una stima della distanza dal'obiettivo).
 
 - La funzione di valutazione dovrebbe ordinare gli stati terminali nello stesso modo della vera funzione di utilità.
-    - Gli statu che sono `vittorie` devono aavere una valutazione migliore dei pareggi, che a loro volta devono essere migliori delle sconfitte
+    - Gli stati che sono `vittorie` devono avere una valutazione migliore dei pareggi, che a loro volta devono essere migliori delle sconfitte.
 
 - I calcoli non dovrebbero richiedere troppo tempo.
-- Per gli stati non terminali la funzione di valutazione dovrebbe avere una forte correlazione con la probabilità reali di vincere la partità (questo limite di incertezza deriva dai limiti computazionali, non dalla mancanza di informazioni).
+- Per gli stati non terminali la funzione di valutazione dovrebbe avere una forte correlazione con le probabilità reali di vincere la partita (questo limite di incertezza deriva dai limiti computazionali, non dalla mancanza di informazioni).
 
-È quindi necessario modificarela ricerca in modo che venga invocata la funzione `eval` quando è il momento di tagliare la ricerca.
+È quindi necessario modificare la ricerca in modo che venga invocata la funzione `eval` quando è il momento di tagliare la ricerca.
 
-È necessario anche modificare il codice in modo che la profondità corrente sia incrementata a ogni chiamata ricorsiva. La profondità `d` deve essere sceta in modo tale che la scelta di una mossa avvenga nel tempo allocato. Un altro approccio più robusto è rappresentato dalla ricerca ad approfondimento iterativo: quando scade il tempo il programma restituisce la mossa calcolata con la più profonda ricerca completata.
+È necessario anche modificare il codice in modo che la profondità corrente sia incrementata a ogni chiamata ricorsiva. La profondità `d` deve essere determinata in modo tale che la scelta di una mossa avvenga nel tempo allocato. Un altro approccio più robusto è rappresentato dalla ricerca ad approfondimento iterativo: quando scade il tempo il programma restituisce la mossa calcolata con la più profonda ricerca completata.
 
 - La funzione di valutazione dovrebbe essere applicata solo a posizioni `quiescenti` (quelle per cui è improbabile che si verifichino grandi variazioni di valore nelle mosse immediatamente successive). Le posizioni non quiescenti possono essere espanse ulteriormente fino a raggiungere posizioni di quiescenza (`ricerca di quiescenza`).
 
 
 #### **Effetto Orizzonte**
-
 A volte succede che la scelta fatta può portare ad un risultato inaspettato che potrebbe essere evitato con la scansione successiva ma che per colpa del tempo non è stata possibile effettuare. Questo prende il nome di "Effetto Horizon".
-Per risolvere questo problema ci sono specifiche euristiche che cercano di seguire lo sviluppo di un branch più "promettete", a discapito di altri, in modo tale da velocizzare la ricerca e quindi di espandere il più possibile l'"orizzonte".
+Per risolvere questo problema ci sono specifiche euristiche che cercano di seguire lo sviluppo di un branch più "promettete", a discapito di altri, in modo tale da velocizzare la ricerca e quindi di espandere il più possibile l'`orizzonte`.
 
 #### **Giochi con alberi molto grandi**
+Per giochi con branching factor molto grande, come Go e Schacchi, il MinMax anche se potenziato con **AlfaBetaPruning** e il Clever Ordering, non è in grando di trovare una soluzione in un tempo utile. Per questo sono state proposte 2 strategie teoriche:
 
-Per giochi con branching factor molto grande, come Go e Schacchi, il MinMax anche se potenziato con AlfaBetaPrugna e il Clever Ordering, non è in grando di trovare una soluzione in un tempo utile. Per questo sono state proposte 2 strategie teoriche:
-
-* **Tipo A**: consiste nel considerare tutte le possibilità fino ad un certo livello di profondità e poi calcolare l'utiliti a quel livello prestabilito
-* **Tipo B**: ignora le mosse che sembrano poco promettenti e segue la linea promettente il più a lungo possibile, quindi esplora una porzione stretta dell'albero andando in profondità
+* **Tipo A**: consiste nel considerare tutte le possibilità fino ad un certo livello di profondità e poi calcolare l'utilità a quel livello prestabilito.
+* **Tipo B**: ignora le mosse che sembrano poco promettenti e segue la linea promettente il più a lungo possibile, quindi esplora una porzione stretta dell'albero andando in profondità.
 
 <hr>
 
 # **Cellular Automata**
 
 Un Automa Cellulare è un array di automi (o celle) programmati nello stesso modo, i quali interagiscono tra di loro all'interno di un vicinato ed hanno uno stato finito.
-Questi automi vengono posizionati all'interno di un reticolo che può avere diverse dimensioni: 1D, 2D, 3G, ecc.
+Questi automi vengono posizionati all'interno di un reticolo che può avere diverse dimensioni: 1D, 2D, 3D, ecc.
 
 **Set di stati e regole di transizione:** <br>
 Il valore dello stato di ogni cella appartiene ad un insieme finito, i cui elementi possiamo assumere come numeri. Il valore dello stato è spesso rappresentato dai colori delle celle. Può esserci uno stato di riposo speciale s0. 
@@ -896,10 +899,12 @@ Per implementare ed eseguire un esperimento CA:
 
 
 #### ***Definizione informale***
-Un automa cellulare è una struttura geometricamente strutturata di sistemi identici (semplici) chiamati cellule che interagiscono solo localmente con ogni cella avente uno stato locale (memoria) che può assumere un numero finito di valori e una (semplice) regola utilizzata per aggiornare lo stato di tutte le celle a passi di tempo discreti e in sincrono per tutte le celle dell'automa (“segnale” globale).
+Un automa cellulare è una struttura geometricamente strutturata di sistemi identici (semplici) chiamati cellule. Quest'ultime interagiscono solo localmente con ogni cella avente:
+- uno stato locale (memoria), il quale può assumere un numero finito di valori
+- una (semplice) regola utilizzata per aggiornare lo stato di tutte le celle a passi di tempo discreti e in sincrono per tutte le celle dell'automa (“segnale” globale).
 
 #### ***Definizione formale***
-Un automa cellulare è un reticolo n-dimensionale di macchine a stati finiti identiche e sincrone il cui stato s viene aggiornato (in modo sincrono) a seguito di una funzione di transizione (o regola di transizione) che tenga conto dello stato delle macchine appartenenti ad un intorno N della macchina, e la cui geometria è la stessa per tutte le macchine.
+Un automa cellulare è un reticolo n-dimensionale di macchine a stati finiti identiche e sincrone il cui stato s viene aggiornato (in modo sincrono) a seguito di una funzione di transizione (o regola di transizione), che tenga conto dello stato delle macchine appartenenti ad un intorno N della macchina, e la cui geometria è la stessa per tutte le macchine.
 
 ![componentiCA](./imgs/componentiCA.png)
 <br>
@@ -907,28 +912,29 @@ Un automa cellulare è un reticolo n-dimensionale di macchine a stati finiti ide
 ![componentiCA2](./imgs/componentiCA2.png)
 
 
-Vicinato: il set di celle che possono influenzare una data cella. Ci sono due metodi diversi per considerarlo:
+**Vicinato**: il set di celle che possono influenzare una data cella. <br>
+Ci sono due metodi diversi per considerarlo:
 
 - Von Neumann
 - Moore
 
 ![moore](./imgs/moore.png)
 
-### **VARIANTI:**
+### **Varianti:**
 
 - **CA Asincrone**
     - Le regole CA vengono generalmente applicate contemporaneamente a tutte le celle del reticolo. Questa variante consente di aggiornare in modo asincrono lo stato delle celle. 
 
 - **CA probabilistiche**
-    - Le transizioni di stato deterministiche vengono sostituite con le specifiche delle probabilità delle assegnazioni di valori di cella. 
+    - Le transizioni di stato deterministiche vengono sostituite con le specifiche delle probabilità per le assegnazioni di valori alla cella. 
 
 - **CA non omogenee**
     - Le regole di transizione di stato possono variare da cella a cella.  
 
 - **CA Mobile**
-    - Alcuni o tutti i siti del reticolo sono liberi di muoversi sul reticolo. 
+    - Alcuni o tutti i siti del reticolo sono liberi di muoversi su esso. 
     - Modelli essenzialmente primitivi di robot mobili. 
-    - Utilizzato per modellare alcuni aspetti degli impegni militari. 
+    - Utilizzato per modellare alcuni aspetti in ambito militare. 
 
 - **CA strutturalmente dinamiche**
     - La topologia (i siti e le connessioni tra i siti) possono evolvere. 
@@ -936,8 +942,8 @@ Vicinato: il set di celle che possono influenzare una data cella. Ci sono due me
 
 ## **Classi di Stepehn Wolfram**
 
-- **Classe One**: Regole che producono universi con Tutte cellule vive o morte.
-- **Classe Two**: Regole che generano configurazioni stabili e sempre riproducibili
+- **Classe One**: Regole che producono universi con tutte cellule vive o morte.
+- **Classe Two**: Regole che generano configurazioni stabili e sempre riproducibili.
 - **CLasse Three**: Regole che generano pattern caotici come le molecole di un gas.
 - **Classe Four**: Regole che producono pattern complessi, localmente organizzati e non strutturati come il liquido che scorre.
 
@@ -956,10 +962,10 @@ Le regole si basano su un vicinato di 9 bit, 512 combinazioni e possibili regole
 
 
 **Universalità computazionale** <br>
-In Life possiamo definire segnali (come flussi di alianti interpretati come bit), implementare tutte le porte logiche (AND, NOT,...), implementare ritardi, banchi di memoria, duplicatori di segnale e così via. 
+In Life possiamo definire segnali come flussi di alianti interpretati come bit. In questo modo si potrebbe implementare con le porte logiche (AND, NOT,...), implementare ritardi, banchi di memoria, duplicatori di segnale e così via. 
 - Quindi, Life può emulare qualsiasi macchina informatica; diciamo che è capace di computazione universale. 
-- La teoria del calcolo dice che, in generale, dato uno stato iniziale per l'automa, non esiste un modo scorciatoia per prevedere il risultato dell'evoluzione della Vita. Dobbiamo eseguirlo.
-- Diciamo che la Vita è computazionalmente irriducibile. 
+- La teoria del calcolo dice che, in generale, dato uno stato iniziale per l'automa, non esiste un modo scorciatoia per prevedere il risultato dell'evoluzione del modello. Dobbiamo eseguirlo.
+- Diciamo che la Life è computazionalmente irriducibile. 
 - In parole povere, questo significa che un'AC molto semplice come Life (e Regola 110 in 1D) può produrre comportamenti altamente non banali, che non possono essere previsti semplicemente osservando la regola di transizione. 
 - L'`universo` costituito da un'AC può essere uno sfondo interessante per l'emergere di fenomeni complessi. 
 
@@ -974,7 +980,7 @@ In Life possiamo definire segnali (come flussi di alianti interpretati come bit)
 ![caex5](./imgs/caex5.png)
 
 
-### **CA probabilistico**
+### **CA probabilistici**
 Finora abbiamo considerato solo CA deterministici. Per modellare molti fenomeni è utile applicare regole di transizione che dipendono da qualche probabilità assegnata esternamente. <br>
 ***Esempio***: il modello dell'incendio boschivo 
 - Ogni cella contiene un albero verde, un albero in fiamme o è vuota 
@@ -992,22 +998,22 @@ Finora abbiamo considerato solo CA deterministici. Per modellare molti fenomeni 
 
 ![probca](./imgs/probca.png)
 
-**Regola Modello predatore/preda** <br>
+### **Regola Modello predatore/preda** <br>
 Questa regola modellava una relazione predatore/preda. Inizia con una popolazione distribuita casualmente di pesci, squali e celle vuote in una griglia di celle 1000x2000 (2 milioni di celle). Inizialmente:
-- Il 50% delle cellule è occupato da pesci 
+- Il 50% delle celle è occupato da pesci 
 - Il 25% è occupato da squali 
 - il 25% è vuoto 
 
-**Regole in dettaglio: Regole del pesce** <br>
+#### **Regole in dettaglio: Regole del pesce** <br>
 Se la cella corrente contiene un pesce:
 - I pesci vivono per 10 generazioni. 
 - Se >=5 vicini sono squali, il pesce muore (cibo per squali). 
 - Se tutti e 8 i vicini sono pesci, il pesce muore (sovrappopolazione). 
 - Se un pesce non muore, aumentare l'età. 
 
-**Regole in dettaglio: Regole Shark** <br>
+#### **Regole in dettaglio: Regole Shark** <br>
 Se la cella corrente contiene uno squalo:
-- Gli squali vivono da 20 generazioni. 
+- Gli squali vivono per 20 generazioni. 
 - Se >=6 vicini sono squali e vicini pesci =0, lo squalo muore (fame). 
 - Uno squalo ha una probabilità di 1/32 (.031) di morire per cause casuali. 
 - Se uno squalo non muore, aumenta l'età. 
@@ -1015,9 +1021,9 @@ Se la cella corrente contiene uno squalo:
 
 ### **Vantaggi delle CA**
 - Sono necessari potenti motori di calcolo (GPU). 
-    - Consentire un calcolo parallelo molto efficiente 
+    - Ma consentono un calcolo parallelo molto efficiente 
 - Simulatore di sistemi dinamici discreti. 
-    - Consentire un'indagine sistematica di fenomeni complessi. 
+    - Consentono un'indagine sistematica di fenomeni complessi. 
 - Modelli originali di GéPphysics. 
     - Invece di guardare le equazioni della fisica fondamentale, considera di modellarle con CA. 
 - È possibile studiare il comportamento emergente di un gruppo complesso da un semplice comportamento individuale. 
@@ -1036,7 +1042,7 @@ Se la cella corrente contiene uno squalo:
 # **Swarm Intelligence**
 
 Come si coordinano insiemi di agenti distribuiti? Ad es. Formiche, traffico, termiti, branchi di pesci e stormi di uccelli?  In realtà non esiste alcun tipo di capo branco che muove e guida il resto del gruppo. In molti casi si ha in realtà una forma di controllo decentralizzato e distribuito. I singoli individui obbediscono in realtà a semplici regole di controllo distribuito. <br>
-Generalmente date le regole, può risultare molto difficile dedurre il comportamento emergente dello sciame e spesso risulta possibile sono tramite la simulazione del modello.
+Generalmente date le regole, può risultare molto difficile dedurre il comportamento emergente dello sciame e spesso risulta possibile solo tramite la simulazione del modello.
 
 Approccio più generale rispetto agli automi cellulari: 
 - **regole generali**
@@ -1049,13 +1055,13 @@ Intelligenza collettiva emergente, indotta dal rispetto delle regole degli agent
 - Non è affatto semplice dedurre, date le regole, quello che sarà il comportamento emergente.
 - Spesso possibile solo tramite simulazione del modello.
 
-**Swarm intelligence: il banco di pesci** <br>
+### **Swarm intelligence: il banco di pesci** <br>
 TRE REGOLE  ---> I pesci seguono tre regole: **allineamento**, **separazione**, **coesione**
 1. **Allineamento**: Un pesce tende a girare nella stessa direzione in cui i pesci vicini si stanno muovendo.
 2. **Separazione**: Un pesce tenderà ad allontanarsi per evitare un pesce troppo vicino.
 3. **Coesione**: Un pesce si muoverà verso i propri vicini, a meno che non sia troppo vicino. Se due pesci sono troppo vicini la regola di separazione, prevale sulle altre due finchè non è ristabilita la separazione minima. Le regole riguardano solo la direzione del movimento, la velocità resta costante.
 
-**Swarm intelligence: stormo di uccelli** <br>
+### **Swarm intelligence: stormo di uccelli** <br>
 (Netlogo Model Library: Biology> Flocking Biology> Flocking Vee Formation). <br>
 La formazione a «V» emerge quando, alle regole di attrazione/coesione e repulsione/distanza minima si aggiunge la regola sul cono visivo: la visuale di un uccello deve essere libera. Se vista ostruita si sposta casualmente, a dx o a sx, fino a che non è più ostruita 
 
@@ -1063,11 +1069,12 @@ La formazione a «V» emerge quando, alle regole di attrazione/coesione e repuls
 - utilizzati in intelligenza artificiale per crowd behavior: comportamento di folle reali (stadi, concerti, manifestazioni), virtuali (diffusione virale info, attacchi hater), studio vie di fuga edifici. Agenti con parametri variabili nel tempo es. Stato ubriachezza, visibilità entusiasmi, panico 
 
 #### **Swarm intelligence: modelli di calcolo** <br>
-Modelli di calcolo ispirati alla swarm intelligence: algoritmi per l’ottimizzazione di funzioni computazionalmente «hard» Particle Swarm Optimization (PSO). Nel PSO sciami di particelle collaborano per esplorare lo spazio di Inizialmente le particelle esplorano lo spazio di ricerca in modo casuale, col passare del tempo, lo sciame tende a convergere sulla soluzione ottima «attratto» dalle particelle che hanno successo maggiore
+Modelli di calcolo ispirati alla swarm intelligence: algoritmi per l’ottimizzazione di funzioni computazionalmente «hard» Particle Swarm Optimization (PSO). Nel PSO sciami di particelle collaborano per esplorare lo spazio  di ricerca. <br>
+Inizialmente le particelle esplorano lo spazio di ricerca in modo casuale, col passare del tempo, lo sciame tende a convergere nella soluzione ottima «attratto» dalle particelle che hanno un successo maggiore
 - ogni particella è un thread di calcolo 
-- ad ogni iterazione si muovono in sincronia tendando una soluzione diversa e condividendo informazione 
+- ad ogni iterazione si muovono in sincronia tendando una soluzione diversa e condividendo informazioni
 
-**Particle Swarm Optimization (PSO)**: ogni particella i-esima all’iterazione t ha un vettore posizione xi,t ed un vettore velocità vi,t è attratta sia dal personal best (il miglior valore incontrato in precedenza durante l’esplorazione) che dal global best (il miglior valore trovato dalle altre particelle nel suo vicinato) 
+**Particle Swarm Optimization (PSO)**: ogni particella i-esima all’iterazione t ha un vettore posizione xi,t ed un vettore velocità vi,t. Essa è attratta sia dal personal best (il miglior valore incontrato in precedenza durante l’esplorazione) che dal global best (il miglior valore trovato dalle altre particelle nel suo vicinato) 
 
 **Modelli di calcolo ispirati alla swarm intelligence: Ant Colony Optimization** <br>
 Ispirato dall’osservazione dei biologi del comportamento stigmergico delle formiche.  
@@ -1079,20 +1086,20 @@ Le formiche:
 
 ![swarm](./imgs/swarm.png)
 
-Ogni particella è attratta sia dal personal best (il miglior valore incontrato in precedenza) che dal global best (il miglior valore trovato dalle altre particelle).
-
 <hr>
 
 # **Reinforcement Learning**
 
-È un campo dell’intelligenza artificiale (fa parte del machine learning) in cui un agente sceglie le azioni basandosi su un premio numerico che ottiene dall’ambiente. Nel reinforcement learning
+È un campo dell’intelligenza artificiale (fa parte del machine learning) in cui un agente sceglie le azioni basandosi su un premio numerico che ottiene dall’ambiente. Nel reinforcement learning:
 - l’agente ha uno spazio degli stati che esplora
-- l’agente conosce le azioni che può eseguire. 
+- l’agente conosce le azioni che può eseguire
 - c'è una serie di azioni che l'agente può intraprendere in qualsiasi stato particolare
-- c'è una ricompensa associata allo stato successivo in cui l'agente atterra. 
+- c'è una ricompensa associata allo stato successivo in cui l'agente atterra
 
 L'obiettivo dell'apprendimento per rinforzo è **progettare la policy** (dato uno stato lui conosce le azioni che deve eseguire) ottimale o quasi ottimale basata sui premi ricevuti. <br>
-Nell’apprendimento di rinforzo non c’è supervisione, ma ci sono delle ricompense (reward). Il feedback è in ritardo, non immediato. Il tempo conta, le azioni sono sequenziali. Le azioni dell’agente influenzano i dati successivi (modificano l’ambiente quindi gli stati successivi) che esso riceve. 
+Nell’apprendimento di rinforzo non c’è supervisione, ma ci sono delle ricompense (reward). 
+- Il feedback è in ritardo, non immediato. Il tempo conta, le azioni sono sequenziali.
+- Le azioni dell’agente influenzano i dati successivi (modificano l’ambiente quindi gli stati successivi) che esso riceve. 
 
 Esempi di applicazione:
 - Apprendimento della guida di veicoli 
@@ -1121,14 +1128,14 @@ I metodi di apprendimento per rinforzo sono modi in cui l'agente può apprendere
 ![rl6](./imgs/rl6.png)
 
 A seconda del problema il reward migliore può essere a breve o medio o lungo termine. <br>
-A seconda della frequenza con cui vengon dati i reward, il modello piò essere definito Sparso oppure no. <br>
-L'obiettivo dell'agente è quello di massimizzare la somma cumulata dei reword (Reward Hypothesis): un **reward Rt** è un feedback scalare che indica come si sta comportando l'agente allo step t. 
+A seconda della frequenza con cui vengono dati i reward, il modello può essere definito **sparso** oppure no. <br>
+**Ricorda bene**: L'obiettivo dell'agente è quello di massimizzare la somma cumulata dei reward (Reward Hypothesis): un **reward Rt** è un feedback scalare che indica come si sta comportando l'agente allo step t. 
 
 ## **Concetti chiave**
 - ### **Stati e osservazioni**
     Uno **stato** s è una descrizione completa dello stato del mondo. <br>
     Non ci sono informazioni sul mondo che sono nascoste allo stato. <br>
-    Un'**osservazione** o è una descrizione parziale di uno stato, che può omettere informazioni. Di solito l'agente riceve dall'ambiente osservazioni non stati. <br>
+    Un'**osservazione** è una descrizione parziale di uno stato, che può omettere informazioni. Di solito l'agente riceve dall'ambiente osservazioni non stati. <br>
     In RL profondo, rappresentiamo quasi sempre stati e osservazioni con un vettore, una matrice o un tensore di ordine superiore a valori reali. Ad esempio, un'osservazione visiva potrebbe essere rappresentata dalla matrice RGB dei suoi valori di pixel; lo stato di un robot potrebbe essere rappresentato dai suoi angoli e velocità di giunzione. <br>
     Quando l'agente è in grado di osservare lo stato completo dell'ambiente, si dice che l'ambiente è completamente osservabile. Quando l'agente può vedere solo un'osservazione parziale, diciamo che l'ambiente è parzialmente osservable.
 - ### **Spazi d'azione (dominio, spazio degli stati)**
@@ -1139,15 +1146,18 @@ L'obiettivo dell'agente è quello di massimizzare la somma cumulata dei reword (
     Il tipo di spazio di azione influenza profondamente le caratteristiche dell'algoritmo. 
 - ### **Policies**
     Una **Policy** è una regola utilizzata dagli agenti per decidere quale azione compiere dato un determinato stato. Può essere di due tipi:
-    1. Deterministica: indicata con u (mu) e associa un'azione ad un determinato stato. ![polid](./imgs/policy_d.png)
-    2. Stocastica: indicata con pi (pigreco) e fornisce la distribuzione di probabilità delle azionoi dati gli stati. ![policys](./imgs/policy_s.png)
+    1. Deterministica: indicata con u (mu) e associa un'azione ad un determinato stato. <br>
+    ![polid](./imgs/policy_d.png)
+    2. Stocastica: indicata con pi (pigreco) e fornisce la distribuzione di probabilità delle azionoi dati gli stati. <br>
+    ![policys](./imgs/policy_s.png)
 
     A volte, nel Deep Reinforcement Learning, gli output delle policy dipendono da dei parametri e per denotare questi parametri, vengono messi come pedice accanto al simbolo della policy. <br>
     ![policypedice](./imgs/policy_pedice.png)
 - ### **Traiettorie**
-    Una **Trajectory** T (chiamate anche rollout) è una sequneza di stati e azioni nel mondo.
+    Una **Trajectory** T (chiamate anche rollout) è una sequneza di stati e azioni nel mondo. <br>
     ![tra](./imgs/tragliettoria.png). <br>
-    La **History** è una sequenza di osservazioni, azioni e reward.  ![stroia](./imgs/storia.png) <br>
+    La **History** è una sequenza di osservazioni, azioni e reward. <br>
+    ![stroia](./imgs/storia.png) <br>
     Le **State Transitions** rappresentano cosa accade al mondo durante un cambio di stato (dallo stato st al tempo t allo stato st+1 al tempo t+1) e sono governate dalle legge dell'ambiente, e dipendono solo dall'azione più recente at.
     Possono essere:
     - **Deterministiche**: <br>
@@ -1155,7 +1165,7 @@ L'obiettivo dell'agente è quello di massimizzare la somma cumulata dei reword (
     - **Stocastiche**: <br>
     ![stateranssdss](./imgs/statetranss.png)
 - ### **Reward and Return**
-    La **reward Function R** è la parte più importante dei sistemi di reifnocmente learning e può dipendere dall'azione, dallo stato attuale e dallo stato futuro, può talvolta essere semplificata dipendendo solo dallo stato attuale e dall'azione. <br>
+    La **reward Function R** è la parte più importante dei sistemi di reinforcement learning e può dipendere dall'azione, dallo stato attuale e dallo stato futuro, può talvolta essere semplificata dipendendo solo dallo stato attuale e dall'azione. <br>
     Quindi il **goal** dell'agente è quello di massimizzare una sorta di **reward cumulativo** ***R(T)*** individuato da una traiettoria. Si distingue tra:
     - **Finite-horizon undiscounted return**: è la somma dei reword ottenuti in un intervallo di tempo <br>
     ![finetahrewq](./imgs/finitehrew.png)
@@ -1167,7 +1177,7 @@ L'obiettivo dell'agente è quello di massimizzare la somma cumulata dei reword (
     
         In condizioni ragionevoli, con un fattore di sconto la somma infinita converge. 
 - ### **Il problema di ottimizzazione nel Reinforcement Learning**
-    Il vero obiettivo del Reifnocemente Learngin è quindi quello di massimizzare l'Expected Return J(pi) definito come segue: <br> 
+    Il vero obiettivo del Reinforcement Learning è quindi quello di massimizzare l'Expected Return J(pi) definito come segue: <br> 
     ![expected ret](./imgs/expecterre.png) <br>
     Otterremo quindi la **policy ottimale**: <br>
     ![ottimale](./imgs/ottimale.png) <br>
@@ -1181,7 +1191,7 @@ L'obiettivo dell'agente è quello di massimizzare la somma cumulata dei reword (
     ![qpi](./imgs/qpi.png)
     3. **Optimal Value Function**: che restituisce l'Expected Return se si parte dallo stato s e si applica sempre la optimal policy. <br>
     ![vstart](./imgs/vstart.png)
-    4. **Optimal Action-Value Function**: che restituisce l'Expected Return se si parte dallo stato s, partendo con un azione arbitraria a e poi seguendo sempre la optimal v. <br>
+    4. **Optimal Action-Value Function**: che restituisce l'Expected Return se si parte dallo stato s, partendo con un'azione arbitraria a e poi seguendo sempre la optimal v. <br>
     ![qstar](./imgs/qstar.png)
 
 <hr>
@@ -1196,7 +1206,7 @@ L'obiettivo dell'agente è quello di massimizzare la somma cumulata dei reword (
 **Learn the model**: il modello è sconosciuto ma attraverso l’esecuzione delle azioni mi posso creare un’aspettativa di come funziona il mondo.<br>
 
 
-Ci sono due categorie principali di approcci per il reainforcement learning:
+Ci sono due categorie principali di approcci per il reinforcement learning:
 - **MODEL BASED**: viene utilizzato un algoritmo che utilizza la funzione di transizione (e la funzione di ricompensa) per stimare la policy ottimale.
 - **MODEL FREE**: viene utilizzato un algoritmo che stima la policy ottimale senza utilizzare o stimare le dinamiche (funzioni di transizione e ricompensa) dell'ambiente. Può essere suddiviso in 2 sottocategorie:
     - **Action Utility Learning**: 
@@ -1212,7 +1222,7 @@ Ci sono due categorie principali di approcci per il reainforcement learning:
 ![atari2](./imgs/atari2.png)
 
 ### **Exploitation vs Exploration**
-Il Reifnocemtne Learinig è un metodo di apprendimento trial-and-error, l'agente deve trovare una buona policy e per farlo dobbiamo trovare una compromesso tra esploraizone di nuove mosse (**Exploration**) e lo sfruttamento di alcune già conosciute (**Exploitation**). <br>
+Il Reinforcement Learning è un metodo di apprendimento trial-and-error, l'agente deve trovare una buona policy e per farlo dobbiamo trovare una compromesso tra esplorazione di nuove mosse (**Exploration**) e lo sfruttamento di alcune già conosciute (**Exploitation**). <br>
 ***esempi***:
 - Selezione di un ristorante
     - **Exploitation**: andare nel proprio ristorante preferito. 
@@ -1248,7 +1258,7 @@ Il discount viene utilizzato per:
 - evita rendimenti infiniti nei processi di Markov ciclici
 - l'incertezza sul futuro potrebbe non essere pienamente rappresentata
 - se il premio è finanziario, i premi immediati possono guadagnare più interesse rispetto ai premi ritardati
-- spesso viene preferito un reward immediato(e.g. comportamenti umani o finanza)
+- spesso viene preferito un reward immediato (e.g. comportamenti umani o finanza)
 - A volte è possibile utilizzare processi di ricompensa Markov non scontati se tutte le sequenze terminano
 
 Il **reward totale scontato** allo step **t** è calcolato come segue: <br>
@@ -1321,7 +1331,7 @@ La funzione Q utilizza l'equazione di Bellman e accetta due input: **stato (s) e
 
 ### **Passaggio 1: inizializza la Q-Table**
 Per prima cosa deve essere costruito la Q-table. Ci sono **n** colonne, dove n = numero di azioni. Ci sono **m** righe, dove m = numero di stati. <br>
-Nel nostro esempio n= `Vai a sinistra, Vai a destra, Vai su e vai giù` e m= `Inizio, Idle, Percorso corretto, Percorso sbagliato e Fine`. <br> 
+Nel nostro esempio n= `{Vai a sinistra, Vai a destra, Vai su e vai giù}` e m= `{Inizio, Idle, Percorso corretto, Percorso sbagliato e Fine}`. <br> 
 Innanzitutto, inizializziamo i valori a 0. <br>
 ![q4](./imgs/q4.png)
 
@@ -1352,7 +1362,7 @@ Questo processo viene ripetuto ancora e ancora fino a quando l'apprendimento non
 - ***Ricompensa***: è il valore ricevuto dopo aver completato una determinata azione in un determinato stato. Una ricompensa può verificarsi in un determinato passaggio temporale o solo nel passaggio temporale terminale.
 - ***Max o np.max()*** (usa la libreria numpy): prende il massimo della ricompensa futura e la applica alla ricompensa per lo stato attuale. Ciò che fa è influenzare l'azione attuale con la possibile ricompensa futura. Questa è la bellezza del q-learning. Stiamo assegnando ricompense future alle azioni in corso per aiutare l'agente a selezionare l'azione di ritorno più alta in un dato stato.
 
-Nell'esempio, ho inserito lo schema di rewaed come segue.
+Nell'esempio, ho inserito lo schema di reward come segue.
 - Ricompensa quando raggiungi un passo più vicino all'obiettivo = +1
 - Ricompensa quando viene colpito un ostacolo =-1
 - Ricompensa quando inattivo=0
@@ -1415,7 +1425,7 @@ Tipi di grafi:
 - digrafi (directed graph)
 - Grafi semplici: sono grafi senza archi multipli o loop sullo stesso nodo.
 
-#### **Definizioni formali**
+### **Definizioni formali**
 Le reti del mondo reale sono generalmente modellate mediante grafi. <br>
 Un grafo G = (V, E) è costituito da un insieme (finito) V = {v1, v2, . . . , vN } di nodi (o vertici) e un insieme E di archi (o collegamenti), che sono coppie {vi, vj } con vi, vj ∈ V. <br>
 Il grafo G è orientato se gli archi {vi, vj } ∈ E sono coppie ordinate = (vi, vj ) ∈ V × V , altrimenti G è non orientato. Un grafo orientato viene spesso definito digrafo. <br>
@@ -1473,7 +1483,7 @@ Nelle relazioni sociali questo peso può essere inteso come:
     - Tende a formare clusters, gruppi omogeni, dove formare relazioni è più semplice.
     - L'estrema omogeneizzazione può agire contro l'innovazione e la generazione di idee (l'eterofilia è quindi auspicabile in alcuni contesti).
     - I legami di omofilia possono essere forti o deboli.
-- **Transitivity**: è una proprietà dei collegamenti, se A e B sono connessie B e C sono connessi allora in un network transitivo A e C sono connessi. 
+- **Transitivity**: è una proprietà dei collegamenti, se A e B sono connessi e B e C sono connessi allora in un network transitivo A e C sono connessi. 
     - Legami forti sono più spesso transitivi rispetto a quelli deboli. La transitività è inoltre l’evidenza dell’esistenza di legami forti (non è una condizione necessaria o sufficiente).
     - Transitività e omofilia insieme conducono alla formazione di **cicli** (grafi completamente connessi) 
 - **Bridging**: sono nodi e archi che connettono vari gruppi.
@@ -1486,14 +1496,14 @@ Nelle relazioni sociali questo peso può essere inteso come:
 
 ## **Key Players**
 Metodi di valutazione dei Key Player in un social network:
-- **IN/OUT-Degree centrality**: il numeo di collegamenti in ingresso o in uscita di un certo nodo. Se il grafo è non orientato allora i due conincidono. Utile per distinguere nodi chiave per la diffusione di informazioni nel loro immediato vicinato. <br>
+- **IN/OUT-Degree centrality**: il numero di collegamenti in ingresso o in uscita di un certo nodo. Se il grafo è non orientato allora i due conincidono. Utile per distinguere nodi chiave per la diffusione di informazioni nel loro immediato vicinato. <br>
 ![deg](./imgs/degree.png)
 
-- **Path e shortest paths**: un path tra due nodi è una sequenza di archi e nodi non ripetuti che connette due nodi. Lo shortest path tra due nodi è il path che connette due nodi ocn il minor numero di archi (anche detto distanza tra due nodi).
+- **Path e shortest paths**: un path tra due nodi è una sequenza di archi e nodi non ripetuti che connette due nodi. Lo shortest path tra due nodi è il path che connette due nodi con il minor numero di archi (anche detto distanza tra due nodi).
 
 - **Betweenness centrality**: mostra quali nodi è più probabile che siano in comunicazione con gli altri (i nodi più attraversati). Utile per capire quali in quale punto la rete potrebbe rompersi e perdere più nodi connessi. Si calcola come segue:
     - Dato un nodo V, si calcola il numero P di shortest path, tra i e j, che lo attraversano
-    - Si cacola il numero totale T di shortest path tra i e j
+    - Si calcola il numero totale T di shortest path tra i e j
     - Si calcola B = P/T
     - Si ripetono queste operaizoni per ogni coppia di i e j e si sommano tutti. <br>
 ![bet](./imgs/bet.png) <br>
@@ -1503,7 +1513,7 @@ Metodi di valutazione dei Key Player in un social network:
     - potrebbe essere richiesto di portare più informazioni. <br>
     E quindi, tali nodi possono essere oggetto di attacchi mirati 
 
-- **Closeness centrality**: serve a misurare il ***reach***, ovvero la velocità con cui un informazione raggiunge altri nodi partendo da un dato nodo iniziale. Si calcola con il reciproco della media della lungezza degli shortest path da quel nodo verso tutti gli altri. <br>
+- **Closeness centrality**: serve a misurare il ***reach***, ovvero la velocità con cui un'informazione raggiunge altri nodi partendo da un dato nodo iniziale. Si calcola con il reciproco della media della lungezza degli shortest path da quel nodo verso tutti gli altri. <br>
 ![closeness](./imgs/close.png) <br>
 ![closeness2](./imgs/close2.png)
 
@@ -1542,10 +1552,10 @@ La centralità del sottografo è stata utilizzata con successo in vari contesti,
 <hr>
 
 ## **Cohesion**
-- **Reciprocity**: il rapporto tra il numero di connessioni reciproche e il numero di connessioni totali. (il grafo deve essere orientato). Utile per individuare la mutualità nello scambio di informazioni. <br>
+- **Reciprocity**: il rapporto tra il numero di connessioni reciproche e il numero di connessioni totali (il grafo deve essere orientato). Utile per individuare la mutualità nello scambio di informazioni. <br>
 ![rec](./imgs/reciprocity.png)
 
-- **Density**: il rapporto tra il numero di connessioni del grafo e il numero totale di connessioni possibili. E' una misura utile per stabilire quanto la rete sia ben connessa e per mettere a confronto reti. Una rete perfettamente connessa è chiamata Clique ed ha una densità di 1. <br>
+- **Density**: il rapporto tra il numero di connessioni del grafo e il numero totale di connessioni possibili. È una misura utile per stabilire quanto la rete sia ben connessa e per mettere a confronto reti. Una rete perfettamente connessa è chiamata Clique ed ha una densità di 1. <br>
 ![den](./imgs/density.png)
 
 - **Clustering**: si calcola con algoritmi di clustering che identificano delle "comunità" all'interno della rete. Il coefficiente di clustering di un nodo è dato dal numero di triplette chiuse nel suo vicinato fratto il numero di triplette del vicinato. <br>
@@ -1554,13 +1564,13 @@ Un coefficiente di clustering misura il grado in cui i nodi di una rete tendono 
 ![clustering2](./imgs/cluster2.png) <br>
 Dove delta i è il numero di triangoli in G avente il nodo vi come uno dei suoi vertici. Il coefficiente di clustering in un grafo G è definito come la media dei coefficienti di cluster di tutti i nodi con grado > = 2. 
 
-- **Diametro**: il diametro è dato dal più lingo shortest paht. Indica la distanza massima percorribile tra 2 nodi nel grafo. <br>
+- **Diametro**: il diametro è dato dal più lungo shortest path. Indica la distanza massima percorribile tra 2 nodi nel grafo. <br>
 ![diametro](./imgs/diametro.png).
 
-- **Small Worlds**: è un network che sembra quasi random ma dismostra un coefficiente di clustering significativamente alto e una corta short avareg path lenght. Questi network avranno molti clustere e molti nodi ponte. <br>
+- **Small Worlds**: è un network che sembra quasi random ma dimostra un coefficiente di clustering significativamente alto e una corta short average path lenght. Questi network avranno molti cluster e molti nodi ponte. <br>
 ![small](./imgs/small.png)
 
-- **Preferential Attachment**: è la proprietà di qualche network dove nella loro evoluzione e cresita nel tempo, la maggior parte delle nuove connessioni vanno ad essere con il nodo più connesso andandolo a preferire a discapito di altri cluster/nodi. Questo può essere dato dalla qualità o popolarità del nodo (o entrabe le cose ). <br>
+- **Preferential Attachment**: è la proprietà di qualche network dove nella loro evoluzione e crescita nel tempo, la maggior parte delle nuove connessioni vanno ad essere con il nodo più connesso andandolo a preferire a discapito di altri cluster/nodi. Questo può essere dato dalla qualità o popolarità del nodo (o entrambe le cose). <br>
 ![preference](./imgs/preference.png) <br>
 Ragioni per il preferential attachment:
     - **Popolarità**: vogliamo essere connessi a persone, idee, oggetti popolari. Il ricco diventa più ricco.
@@ -1583,7 +1593,9 @@ Ragioni per il preferential attachment:
 
 ***NOTA IMPORTANTANTE***: la matrice di adiacenza elevata alla n-esima potenza con elemento `a^n i,j` indica quanti cammini di lunghezza n passano tra i e j.
 
-### **Communicability**
+<hr>
+
+## **Communicability**
 ![comm1](./imgs/comm1.png)<br>
 ![comm2](./imgs/comm2.png)<br>
 ![comm3](./imgs/comm3.png)<br>
@@ -1609,7 +1621,7 @@ Una comunità è definita come un insieme di nodi con un alto coefficiente di cl
 ## **Formazione dei grafi**
 **Modelli di network**:
 - Proprietà dei grafi del mondo reale
-- Formazione di componenti giganti
+    - Formazione di componenti giganti
 - Grafi casuali
     - Grafi casuali di Erdos–Renyi
 - Proprietà del piccolo mondo
@@ -1632,14 +1644,14 @@ I grafi casuali, tuttavia, sono utili come modelli nulli rispetto ai quali confr
 <hr>
 
 ## **Networks Properties**
-La maggior parte delle reti Real ha:
+La maggior parte delle reti reali ha:
 - Componente connesso gigante
     - “siamo tutti collegati”
 - Alta connettività
     - “tutti i miei amici sono amici”
 - Piccolo diametro
     - “notizia diffusa in un lampo”
-- Distribuzione della laurea in Power Law
+- Distribuzione del grado in Power Law
     - “poche persone hanno un numero enorme di follower”
 - Scala libera
     - “una piccola parte delle reti è simile al quadro generale”
@@ -1664,8 +1676,10 @@ Come identificare le “strutture comunitarie” in una rete?
 - Clustering, chiusura triadica (transitività)
 - Partizionamento 
 
+<hr>
+
 ## **Erdos-Renyi Random Graphs**
-E' un grafo G con n nodi e m archi e quest ultimi hanno la stessa probabilità ***p*** di essere generati.
+È un grafo G con n nodi e m archi e quest ultimi hanno la stessa probabilità ***p*** di essere generati.
 
 ![er](./imgs/esempio_er.png)
 
@@ -1710,13 +1724,12 @@ Per una transizione netta, pensa all'acqua in un bicchiere e al pc = 0 gradi.
 <hr>
 
 ## **Small World Network**
-Una network si dice Small World Network se la lunghezza media L dello shortest path tra due nodi è in scala logaritmica rispetto al numero totale dei nodi n. Tipo 225226 nodi -> L = 3.65 (la L deve essere mooolto piccola rispetto a n). Alcuni autori hanno definiscono lo small world network aggiungendogli un'altra proprietà, ovvero avere un alto coefficiente di clustering. Trasmettere informazioni in una small world network risulta molto veloce, ma anche la trasmissione di minacce e virus.
-
+Un network si dice Small World Network se la lunghezza media L dello shortest path tra due nodi è in scala logaritmica rispetto al numero totale dei nodi n. Tipo 225226 nodi -> L = 3.65 (la L deve essere mooolto piccola rispetto a n). Alcuni autori hanno definito lo small world network aggiungendogli un'altra proprietà, ovvero avere un alto coefficiente di clustering. Trasmettere informazioni in una small world network risulta molto veloce, ma lo è anche la trasmissione di minacce e virus.
 
 ![small1](./imgs/small1.png)
 
 ### **The Watts–Strogatz random rewire model - Generazione di reti Small World (altamente connesse)**
-Per generare degli samall workd Wats-Stragat si parte da una griglia circolare (network regolare) (1-dimensionale con k = 4) la quale ha un alto coefficiente di clustering e randomicamente si rimuovono e aggiungono degli archi andando cosi a generare un fenomeno di small world. Questo metodo va a migliorare il precedente metodo di Erdos-Renyi perchè generando un grafo random non è detto che si ottiene un alto tasso di clustering.
+Per generare degli small world Wats-Stragat si parte da una griglia circolare (network regolare) (1-dimensionale con k = 4) la quale ha un alto coefficiente di clustering e randomicamente si rimuovono e aggiungono degli archi andando cosi a generare un fenomeno di small world. Questo metodo va a migliorare il precedente metodo di Erdos-Renyi perchè generando un grafo random non è detto che si ottiene un alto tasso di clustering.
 
 - **Rewire**: C’è un componente gigante ma poco connesso. Ogni nodo è connesso con un nodo ma i vicini non è detto che lo siano tra loro. stacco e riattacco un arco con un altro nodo con una certa probabilità. Quando questa probabilità supera una certa soglia quello che succede è che emerge un alto grado di connettività locale. 
 
@@ -1738,7 +1751,7 @@ La conseguenza:
 ![small tabella](./imgs/small_tabella.png)
 
 
-Hanno dei pattern di collegamento che si ripetono spesso (tipo i 5 nodi connessi ad un nodo centrale rosso)(SELF SIMILAR)
+Hanno dei pattern di collegamento che si ripetono spesso (tipo i 5 nodi connessi ad un nodo centrale rosso)(SELF SIMILAR). <br>
 Presentano anche una topologia non basilare (non-trivial topology).
 
 ![small2](./imgs/small2.png)
@@ -1796,11 +1809,11 @@ Si diceva che «i nodi più strettamente connessi rappresentano un tallone d'Ach
 
 #### **Preferences Attachment of newcomers**
 Un altro modo molto diffuso per modellare le reti è riprodurre il processo di crescita in atto nel mondo reale: entrano nuovi nodi. <br>
-Heber Simon mostrò nel 1955 che le leggi di potere si incontrano quando i ricchi si arricchiscono: più abbiamo già, più diventiamo. 
+Heber Simon mostrò nel 1955 che le leggi di potere si incontrano quando i ricchi si arricchiscono: più abbiamo già, più avremo. 
 
-Quando arriva un nuovo nodo si connette ai nodi più popolari (Con più connessioni), non in maniera deterministica, ma è una preferenza proporzionale (probabilità proporzionale la numero di connessioni).
+Quando arriva un nuovo nodo si connette ai nodi più popolari (con più connessioni), non in maniera deterministica, ma è una preferenza proporzionale (probabilità proporzionale la numero di connessioni).
 
-Quindi il modo più comun per generare una rete senza scala è usare attaccamento preferenziale.
+Quindi il modo più comune per generare una rete senza scala è usare attaccamento preferenziale.
 - Quando arriva un nuovo nodo, preferisce collegarsi ai nodi più popolari 
 
 Nel 19665 Derek de Solla Price stabilì un modello in cui la probabilità che un nuovo nodo si colleghi ad un altro è proporzionale a Kin+1, dove Kin p il grado di ingresso del nodo. 
